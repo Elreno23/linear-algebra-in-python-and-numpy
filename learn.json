@@ -1,0 +1,12 @@
+{
+  "grading": "isolated",
+  "difficulty": "beginner",
+  "duration": 5,
+  "description": {
+    "us": ""
+  },
+  "title": {
+    "us": "linear-algebra-in-python-and-numpy"
+  },
+  "slug": "linear-algebra-in-python-and-numpy"
+}
