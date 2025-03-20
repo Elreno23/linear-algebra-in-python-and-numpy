@@ -3,10 +3,15 @@
   "difficulty": "beginner",
   "duration": 5,
   "description": {
-    "us": ""
+    "us": "Exercises and examples for linear algebra using Python and NumPy."
   },
   "title": {
-    "us": "linear-algebra-in-python-and-numpy"
+    "us": "Linear Algebra in Python and NumPy"
   },
-  "slug": "linear-algebra-in-python-and-numpy"
+  "slug": "linear-algebra-in-python-and-numpy",
+  "repository": "https://github.com/tu-usuario/tu-repositorio",
+  "bugsLink": "https://github.com/tu-usuario/tu-repositorio/issues",
+  "language": "python",
+  "projectType": "tutorial",
+  "gitpod": true
 }
