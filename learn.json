@@ -15,6 +15,6 @@
   "bugsLink": "https://github.com/4GeeksAcademy/linear-algebra-in-python-and-numpy/issues",
   "language": "python",
   "projectType": "tutorial",
-  "technologies": ["python", "numpy", "linear-algebra", "data-analysis"]
+  "technologies": ["python", "numpy", "linear-algebra", "data-analysis"],
   "gitpod": true
 }
