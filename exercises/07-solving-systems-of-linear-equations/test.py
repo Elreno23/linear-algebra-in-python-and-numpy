@@ -22,16 +22,19 @@ def test_solve_system_numpy():
 
 # --- Error Handling ---
 
-@pytest.mark.it("Raises ValueError when the coefficient matrix is not invertible")
+@pytest.mark.it("Returns an error message when the coefficient matrix is not invertible")
 def test_solve_system_singular_matrix():
     A = [[1, 2], [2, 4]]  # Determinant = 0
     b = [3, 6]
-    with pytest.raises(ValueError, match="Matrix is not invertible"):
-        solve_system(A, b, "pure")
+    result = solve_system(A, b, "pure")
+    assert isinstance(result, str), "Expected a string error message from solve_system"
+    assert "not invertible" in result.lower(), f"Expected error message to mention 'not invertible', but got: {result}"
 
-@pytest.mark.it("Raises ValueError when the mode is invalid")
-def test_solve_system_invalid_mode():
+@pytest.mark.it("Returns an error message when an invalid mode is passed to solve_system")
+@pytest.mark.parametrize("invalid_mode", ["", None, "invalid", 0, "System", "PURE", "NumPy"])
+def test_solve_system_invalid_mode(invalid_mode):
     A = [[2, 3], [4, -1]]
     b = [5, 1]
-    with pytest.raises(ValueError, match="Invalid mode"):
-        solve_system(A, b, "invalid_mode")
+    result = solve_system(A, b, invalid_mode)
+    assert isinstance(result, str), "Expected a string error message from solve_system"
+    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"

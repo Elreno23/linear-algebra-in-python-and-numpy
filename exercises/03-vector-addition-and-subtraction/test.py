@@ -47,11 +47,24 @@ def test_vectors_different_lengths():
     with pytest.raises(ValueError, match="Vectors must have the same length"):
         subtract_vectors(v1, v2, "numpy")
 
-@pytest.mark.it("Raises ValueError when mode is invalid")
-def test_vectors_invalid_mode():
+@pytest.mark.it("Returns an error message when an invalid mode is passed to sum_vectors")
+@pytest.mark.parametrize("invalid_mode", ["invalid", "", None, 123, "matrix", "Pure", "NUMPY"])
+def test_sum_vectors_invalid_mode(invalid_mode):
     v1 = [1, 2, 3]
     v2 = [4, 5, 6]
-    with pytest.raises(ValueError, match="Invalid mode"):
-        sum_vectors(v1, v2, "invalid_mode")
-    with pytest.raises(ValueError, match="Invalid mode"):
-        subtract_vectors(v1, v2, "invalid_mode")
+
+    result = sum_vectors(v1, v2, invalid_mode)
+
+    assert isinstance(result, str), "Expected a string error message from sum_vectors"
+    assert "Invalid mode".lower() in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"
+
+@pytest.mark.it("Returns an error message when an invalid mode is passed to subtract_vectors")
+@pytest.mark.parametrize("invalid_mode", ["invalid", "", None, 123, "matrix", "Pure", "NUMPY"])
+def test_subtract_vectors_invalid_mode(invalid_mode):
+    v1 = [1, 2, 3]
+    v2 = [4, 5, 6]
+
+    result = subtract_vectors(v1, v2, invalid_mode)
+
+    assert isinstance(result, str), "Expected a string error message from subtract_vectors"
+    assert "Invalid mode".lower() in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"

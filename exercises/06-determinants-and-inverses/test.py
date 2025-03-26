@@ -1,3 +1,8 @@
+import pytest
+import numpy as np
+from app import determinant, inverse_matrix  # Make sure to import the function correctly
+
+
 # --- Determinant Tests ---
 
 @pytest.mark.it("Correctly calculates the determinant in 'pure' mode")
@@ -32,16 +37,25 @@ def test_inverse_matrix_numpy():
 
 # --- Error Handling ---
 
-@pytest.mark.it("Raises ValueError when the matrix is not invertible")
+@pytest.mark.it("Returns an error message when the matrix is not invertible")
 def test_non_invertible_matrix():
     singular_matrix = [[1, 2], [2, 4]]  # Determinant = 0
-    with pytest.raises(ValueError, match="Matrix is not invertible"):
-        inverse_matrix(singular_matrix, "pure")
+    result = inverse_matrix(singular_matrix, "pure")
+    assert isinstance(result, str), "Expected a string error message from inverse_matrix"
+    assert "not invertible" in result.lower(), f"Expected error message to mention 'not invertible', but got: {result}"
 
-@pytest.mark.it("Raises ValueError when the mode is invalid")
-def test_invalid_mode():
+@pytest.mark.it("Returns an error message when an invalid mode is passed to determinant")
+@pytest.mark.parametrize("invalid_mode", ["", None, "invalid", 0, "Det", "PURE", "NumPy"])
+def test_determinant_invalid_mode(invalid_mode):
     matrix = [[1, 2], [3, 4]]
-    with pytest.raises(ValueError, match="Invalid mode"):
-        determinant(matrix, "invalid_mode")
-    with pytest.raises(ValueError, match="Invalid mode"):
-        inverse_matrix(matrix, "invalid_mode")
+    result = determinant(matrix, invalid_mode)
+    assert isinstance(result, str), "Expected a string error message from determinant"
+    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"
+
+@pytest.mark.it("Returns an error message when an invalid mode is passed to inverse_matrix")
+@pytest.mark.parametrize("invalid_mode", ["", None, "invalid", 0, "Inverse", "PURE", "NumPy"])
+def test_inverse_matrix_invalid_mode(invalid_mode):
+    matrix = [[1, 2], [3, 4]]
+    result = inverse_matrix(matrix, invalid_mode)
+    assert isinstance(result, str), "Expected a string error message from inverse_matrix"
+    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"

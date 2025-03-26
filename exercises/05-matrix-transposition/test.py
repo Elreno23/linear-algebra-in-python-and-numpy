@@ -16,14 +16,17 @@ def test_transpose_numpy():
     result = transpose(matrix, "numpy")
     assert np.array_equal(result, expected), f"Expected {expected}, but got {result}"
 
-@pytest.mark.it("Raises ValueError when matrix rows have different lengths")
+@pytest.mark.it("Returns an error message when matrix rows have different lengths in transpose")
 def test_transpose_invalid_matrix():
     invalid_matrix = [[1, 2], [3]]  # Irregular row lengths
-    with pytest.raises(ValueError, match="Invalid matrix"):
-        transpose(invalid_matrix, "pure")
+    result = transpose(invalid_matrix, "pure")
+    assert isinstance(result, str), "Expected a string error message from transpose"
+    assert "invalid matrix" in result.lower(), f"Expected error message to mention 'Invalid matrix', but got: {result}"
 
-@pytest.mark.it("Raises ValueError when mode is invalid")
-def test_transpose_invalid_mode():
+@pytest.mark.it("Returns an error message when an invalid mode is passed to transpose")
+@pytest.mark.parametrize("invalid_mode", ["", None, 0, 123, "Matrix", "Pure", "NUMPY"])
+def test_transpose_invalid_mode(invalid_mode):
     matrix = [[1, 2, 3], [4, 5, 6]]
-    with pytest.raises(ValueError, match="Invalid mode"):
-        transpose(matrix, "invalid_mode")
+    result = transpose(matrix, invalid_mode)
+    assert isinstance(result, str), "Expected a string error message from transpose"
+    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"

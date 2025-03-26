@@ -40,29 +40,36 @@ def test_matrix_product_numpy():
 
 # --- Error Handling ---
 
-@pytest.mark.it("Raises ValueError when vectors have different lengths in dot product")
+@pytest.mark.it("Returns an error message when vectors have different lengths in dot_product")
 def test_dot_product_invalid_length():
     v1 = [1, 2]
     v2 = [3, 4, 5]
-    with pytest.raises(ValueError, match="Vectors must have the same length"):
-        dot_product(v1, v2, "pure")
+    result = dot_product(v1, v2, "pure")
+    assert isinstance(result, str), "Expected a string error message from dot_product"
+    assert "same length" in result.lower(), f"Expected error message to mention 'same length', but got: {result}"
 
-@pytest.mark.it("Raises ValueError when matrix dimensions are incompatible")
+@pytest.mark.it("Returns an error message when matrix dimensions are incompatible in matrix_product")
 def test_matrix_product_invalid_size():
     A = [[1, 2], [3, 4]]
     B = [[5, 6, 7], [8, 9, 10], [11, 12, 13]]
-    with pytest.raises(ValueError, match="Incompatible matrix dimensions"):
-        matrix_product(A, B, "pure")
+    result = matrix_product(A, B, "pure")
+    assert isinstance(result, str), "Expected a string error message from matrix_product"
+    assert "incompatible matrix dimensions" in result.lower(), f"Expected error message to mention 'incompatible matrix dimensions', but got: {result}"
 
-@pytest.mark.it("Raises ValueError when mode is invalid")
-def test_invalid_mode():
+@pytest.mark.it("Returns an error message when an invalid mode is passed to dot_product")
+@pytest.mark.parametrize("invalid_mode", ["invalid", "", None, 123, "Dot", "NUMPY"])
+def test_dot_product_invalid_mode(invalid_mode):
     v1 = [1, 2, 3]
     v2 = [4, 5, 6]
+    result = dot_product(v1, v2, invalid_mode)
+    assert isinstance(result, str), "Expected a string error message from dot_product"
+    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"
+
+@pytest.mark.it("Returns an error message when an invalid mode is passed to matrix_product")
+@pytest.mark.parametrize("invalid_mode", ["invalid", "", None, 123, "Product", "PURE"])
+def test_matrix_product_invalid_mode(invalid_mode):
     A = [[1, 2], [3, 4]]
     B = [[5, 6], [7, 8]]
-
-    with pytest.raises(ValueError, match="Invalid mode"):
-        dot_product(v1, v2, "invalid_mode")
-
-    with pytest.raises(ValueError, match="Invalid mode"):
-        matrix_product(A, B, "invalid_mode")
+    result = matrix_product(A, B, invalid_mode)
+    assert isinstance(result, str), "Expected a string error message from matrix_product"
+    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"
