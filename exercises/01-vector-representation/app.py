@@ -11,7 +11,7 @@ def create_vector(lst, mode="pure"):
     Returns:
     - A vector in the specified format.
     """
-    # TODO: Implement the logic to return the vector in the selected mode.
+    # Implement the logic to return the vector in the selected mode.
     pass  # Remove this line when the function is implemented
 
 # Test the function with the following values:

@@ -2,29 +2,36 @@ import pytest
 import numpy as np
 from app import compute_eigen  # Make sure to import the function correctly
 
-@pytest.mark.parametrize("A, mode, expected_eigenvalues", [
-    ([[3, 2], [1, 4]], "pure", [5, 2]),  # Test with lists (manual eigenvalues)
-    ([[3, 2], [1, 4]], "numpy", np.array([5, 2]))  # Test with NumPy
-])
-def test_compute_eigen(A, mode, expected_eigenvalues):
-    """Verify that compute_eigen returns the correct eigenvalues in both modes."""
-    eigenvalues, eigenvectors = compute_eigen(A, mode)
+# --- Eigenvalue Computation Tests ---
+
+@pytest.mark.it("Correctly computes eigenvalues in 'pure' mode (without eigenvectors)")
+def test_compute_eigen_pure():
+    A = [[3, 2], [1, 4]]
+    expected = [5, 2]
+    eigenvalues, eigenvectors = compute_eigen(A, "pure")
     
-    if mode == "pure":
-        assert pytest.approx(eigenvalues) == expected_eigenvalues, f"Expected {expected_eigenvalues}, but got {eigenvalues}"
-        assert eigenvectors is None, "In 'pure' mode, eigenvectors should not be returned"
-    else:
-        assert np.allclose(eigenvalues, expected_eigenvalues), f"Expected {expected_eigenvalues}, but got {eigenvalues}"
-        assert isinstance(eigenvectors, np.ndarray), "Eigenvectors should be a NumPy array"
+    assert pytest.approx(eigenvalues) == expected, f"Expected {expected}, but got {eigenvalues}"
+    assert eigenvectors is None, "In 'pure' mode, eigenvectors should not be returned"
 
+@pytest.mark.it("Correctly computes eigenvalues and eigenvectors in 'numpy' mode")
+def test_compute_eigen_numpy():
+    A = [[3, 2], [1, 4]]
+    expected = np.array([5, 2])
+    eigenvalues, eigenvectors = compute_eigen(A, "numpy")
+
+    assert np.allclose(eigenvalues, expected), f"Expected {expected}, but got {eigenvalues}"
+    assert isinstance(eigenvectors, np.ndarray), "Eigenvectors should be a NumPy array"
+
+# --- Error Handling ---
+
+@pytest.mark.it("Raises ValueError when the matrix is not square")
 def test_compute_eigen_non_square():
-    """Verify that an error is raised if the matrix is not square."""
-    non_square_A = [[1, 2, 3], [4, 5, 6]]
+    A = [[1, 2, 3], [4, 5, 6]]
     with pytest.raises(ValueError, match="Matrix must be square"):
-        compute_eigen(non_square_A, "pure")
+        compute_eigen(A, "pure")
 
+@pytest.mark.it("Raises ValueError when the mode is invalid")
 def test_compute_eigen_invalid_mode():
-    """Verify that an error is raised if the mode is invalid."""
     A = [[3, 2], [1, 4]]
     with pytest.raises(ValueError, match="Invalid mode"):
         compute_eigen(A, "invalid_mode")

@@ -2,14 +2,17 @@ import pytest
 import numpy as np
 from app import create_vector  # Make sure to import the function from the correct file
 
-@pytest.mark.parametrize("lst, mode, expected_type", [
-    ([1, 2, 3], "pure", list),  # Test in "pure" mode
-    ([1, 2, 3], "numpy", np.ndarray),  # Test in "numpy" mode
-])
-def test_create_vector(lst, mode, expected_type):
-    result = create_vector(lst, mode)
-    assert isinstance(result, expected_type), f"Expected {expected_type}, but got {type(result)}"
+@pytest.mark.it("Returns a list when mode is 'pure'")
+def test_create_vector_pure():
+    result = create_vector([1, 2, 3], "pure")
+    assert isinstance(result, list), "Expected a list"
 
+@pytest.mark.it("Returns a NumPy array when mode is 'numpy'")
+def test_create_vector_numpy():
+    result = create_vector([1, 2, 3], "numpy")
+    assert isinstance(result, np.ndarray), "Expected a NumPy ndarray"
+
+@pytest.mark.it("Raises ValueError when mode is invalid")
 def test_create_vector_invalid_mode():
     with pytest.raises(ValueError, match="Invalid mode"):
-        create_vector([1, 2, 3], "invalid")  # Invalid mode should raise an error
+        create_vector([1, 2, 3], "invalid")

@@ -1,1 +1,7 @@
-Welcome!
+# `00` Welcome
+
+**Linear algebra** is a fundamental tool in many branches of science and engineering. From physics and statistics to machine learning and computer graphics development, its presence is constant. Especially in areas like **scientific programming**, **data analysis**, and **artificial intelligence**, mastering vectors and matrices is not just useful but necessary.
+
+Knowing how to manipulate these structures allows you to solve **systems of equations**, apply **geometric transformations**, build **mathematical models**, and optimize complex algorithms. Additionally, it forms the basis for common operations such as large-scale data multiplications, rotations in multidimensional spaces, or the calculation of projections.
+
+In this tutorial, we will delve into the world of linear algebra using **Python** as the base language. Python is one of the most popular tools among data scientists and engineers due to its simplicity and the vast number of available libraries. You will learn to work with vectors and matrices both from a more manual perspective, using **nested lists**, and with optimized tools like **NumPy**, a library specifically designed for high-performance numerical computations.
