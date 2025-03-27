@@ -13,12 +13,7 @@ def create_matrix(n, m, mode="pure"):
     Returns:
     - A matrix in the specified format.
     """
-    if mode == "pure":
-        return [[random.randint(0, 10) for _ in range(m)] for _ in range(n)]
-    elif mode == "numpy":
-        return np.random.randint(0, 10, size=(n, m))
-    else:
-        return "Invalid mode"
+    pass # Remove this line when implemented
 
 # Test the function with the following values:
 matrix1 = create_matrix(3, 3, "pure")
