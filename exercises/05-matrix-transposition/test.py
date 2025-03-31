@@ -22,11 +22,3 @@ def test_transpose_invalid_matrix():
     result = transpose(invalid_matrix, "pure")
     assert isinstance(result, str), "Expected a string error message from transpose"
     assert "invalid matrix" in result.lower(), f"Expected error message to mention 'Invalid matrix', but got: {result}"
-
-@pytest.mark.it("Returns an error message when an invalid mode is passed to transpose")
-@pytest.mark.parametrize("invalid_mode", ["", None, 0, 123, "Matrix", "Pure", "NUMPY"])
-def test_transpose_invalid_mode(invalid_mode):
-    matrix = [[1, 2, 3], [4, 5, 6]]
-    result = transpose(matrix, invalid_mode)
-    assert isinstance(result, str), "Expected a string error message from transpose"
-    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"

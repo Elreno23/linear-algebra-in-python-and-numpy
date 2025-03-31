@@ -24,11 +24,3 @@ def test_create_matrix_shape_numpy():
     n, m = 4, 5
     matrix = create_matrix(n, m, "numpy")
     assert matrix.shape == (n, m), f"Expected shape ({n}, {m}), but got {matrix.shape}"
-
-
-@pytest.mark.it("Expected error message to mention 'Invalid mode'")
-@pytest.mark.parametrize("invalid_mode",["invalid", "", None, 123, "matrix", "Pure", "NUMPY"])
-def test_create_matrix_invalid_mode(invalid_mode):
-    result = create_matrix(3, 3, invalid_mode)
-    assert isinstance(result, str), "Expected a string error message"
-    assert "Invalid mode".lower() in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"

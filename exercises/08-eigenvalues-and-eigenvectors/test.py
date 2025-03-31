@@ -30,11 +30,3 @@ def test_compute_eigen_non_square():
     result = compute_eigen(A, "pure")
     assert isinstance(result, str), "Expected a string error message from compute_eigen"
     assert "must be square" in result.lower(), f"Expected error message to mention 'must be square', but got: {result}"
-
-@pytest.mark.it("Returns an error message when an invalid mode is passed to compute_eigen")
-@pytest.mark.parametrize("invalid_mode", ["", None, "invalid", 0, "Eigen", "PURE", "NumPy"])
-def test_compute_eigen_invalid_mode(invalid_mode):
-    A = [[3, 2], [1, 4]]
-    result = compute_eigen(A, invalid_mode)
-    assert isinstance(result, str), "Expected a string error message from compute_eigen"
-    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"

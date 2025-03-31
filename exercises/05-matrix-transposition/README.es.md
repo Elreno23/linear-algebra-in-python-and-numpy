@@ -42,7 +42,6 @@ En otras palabras, **los elementos de la fila \( i \) pasan a la columna \( i \)
 
     - Si `mode="pure"`, usa listas anidadas.
     - Si `mode="numpy"`, usa NumPy.
-    - Si matrix no es válida, lanza un error.
 
 2. Prueba la función con la matriz de ejemplo:
 

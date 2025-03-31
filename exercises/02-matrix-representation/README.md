@@ -22,6 +22,5 @@ A **matrix** in linear algebra is a two-dimensional structure organized in **row
 
     - If `mode="pure"`, generate a nested list with random numbers.
     - If `mode="numpy"`, generate a NumPy array with random numbers.
-    - If `mode` is not valid, raise an error.
 
 2. Test the function with a sample 3x3 matrix in both modes and display the result in the console.

@@ -39,7 +39,6 @@ print(transposed)
 
     - If `mode="pure"`, use nested lists.
     - If `mode="numpy"`, use NumPy.
-    - If the matrix is not valid, raise an error.
 
 2. Test the function with the example matrix:
 

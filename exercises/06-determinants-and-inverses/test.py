@@ -42,20 +42,4 @@ def test_non_invertible_matrix():
     singular_matrix = [[1, 2], [2, 4]]  # Determinant = 0
     result = inverse_matrix(singular_matrix, "pure")
     assert isinstance(result, str), "Expected a string error message from inverse_matrix"
-    assert "not invertible" in result.lower(), f"Expected error message to mention 'not invertible', but got: {result}"
-
-@pytest.mark.it("Returns an error message when an invalid mode is passed to determinant")
-@pytest.mark.parametrize("invalid_mode", ["", None, "invalid", 0, "Det", "PURE", "NumPy"])
-def test_determinant_invalid_mode(invalid_mode):
-    matrix = [[1, 2], [3, 4]]
-    result = determinant(matrix, invalid_mode)
-    assert isinstance(result, str), "Expected a string error message from determinant"
-    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"
-
-@pytest.mark.it("Returns an error message when an invalid mode is passed to inverse_matrix")
-@pytest.mark.parametrize("invalid_mode", ["", None, "invalid", 0, "Inverse", "PURE", "NumPy"])
-def test_inverse_matrix_invalid_mode(invalid_mode):
-    matrix = [[1, 2], [3, 4]]
-    result = inverse_matrix(matrix, invalid_mode)
-    assert isinstance(result, str), "Expected a string error message from inverse_matrix"
-    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"
+    assert "not invertible" in result.lower(), f"Expected error message to mention words 'not invertible', but got: {result}"

@@ -29,12 +29,3 @@ def test_solve_system_singular_matrix():
     result = solve_system(A, b, "pure")
     assert isinstance(result, str), "Expected a string error message from solve_system"
     assert "not invertible" in result.lower(), f"Expected error message to mention 'not invertible', but got: {result}"
-
-@pytest.mark.it("Returns an error message when an invalid mode is passed to solve_system")
-@pytest.mark.parametrize("invalid_mode", ["", None, "invalid", 0, "System", "PURE", "NumPy"])
-def test_solve_system_invalid_mode(invalid_mode):
-    A = [[2, 3], [4, -1]]
-    b = [5, 1]
-    result = solve_system(A, b, invalid_mode)
-    assert isinstance(result, str), "Expected a string error message from solve_system"
-    assert "invalid mode" in result.lower(), f"Expected error message to mention 'Invalid mode', but got: {result}"

@@ -26,6 +26,5 @@ En este ejercicio, aprenderás a **representar vectores en Python** de dos maner
 1. **Completa la función `create_vector(lst, mode="pure")`** para que reciba una lista de números y devuelva un vector.  
    - Si `mode="pure"`, retorna una **lista normal** de Python.  
    - Si `mode="numpy"`, retorna un **array de NumPy**.  
-   - Si `mode` no es válido, lanza un error.  
 
 2. **Prueba la función** con una lista de ejemplo `[1, 2, 3]` en ambos modos y muestra el resultado en consola.  
