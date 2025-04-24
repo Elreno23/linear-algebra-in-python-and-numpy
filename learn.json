@@ -10,6 +10,7 @@
     "us": "Linear Algebra in Python and NumPy",
     "es": "Álgebra Lineal en Python y NumPy"
   },
+  "preview":"https://github.com/4GeeksAcademy/linear-algebra-in-python-and-numpy/blob/main/.learn/assets/preview.png",
   "slug": "linear-algebra-in-python-and-numpy",
   "repository": "https://github.com/4GeeksAcademy/linear-algebra-in-python-and-numpy",
   "bugsLink": "https://github.com/4GeeksAcademy/linear-algebra-in-python-and-numpy/issues",
