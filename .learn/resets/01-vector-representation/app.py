@@ -11,10 +11,7 @@ def create_vector(lst, mode="pure"):
     Returns:
     - A vector in the specified format.
     """
-    if mode == "pure":
-        return lst
-    if mode == "numpy":
-        return np.array(lst)
+    pass # Remove this line when implemented
     
 
 # Test the function with the following values:
